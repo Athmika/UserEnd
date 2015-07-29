@@ -35,11 +35,31 @@
 		62A07D6F1B1F7FB9001F6916 /* Bond.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 62551B7E1B06BFA2000913E4 /* Bond.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EC3728581B5426470051BC2D /* PhototakingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3728571B5426470051BC2D /* PhototakingHelper.swift */; };
 		EC37285A1B5427CB0051BC2D /* RequestEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3728591B5427CB0051BC2D /* RequestEntryViewController.swift */; };
+		EC7986E71B60216900FD147D /* UserAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7986E61B60216900FD147D /* UserAlert.swift */; };
+		EC7986F11B6022E300FD147D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7986F01B6022E300FD147D /* LoginViewController.swift */; };
+		EC7986F31B6058B000FD147D /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7986F21B6058B000FD147D /* StatusViewController.swift */; };
+		EC7986F51B6090E300FD147D /* calculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7986F41B6090E300FD147D /* calculatorViewController.swift */; };
 		EC7C56FE1B559228003B62AB /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C56FD1B559228003B62AB /* Post.swift */; };
-		EC7C573A1B56CD06003B62AB /* LocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C57391B56CD06003B62AB /* LocationHelper.swift */; };
 		EC892EAF1B557BFB003BCC9B /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC892EAE1B557BFB003BCC9B /* Checkbox.swift */; };
 		EC892EB11B557C8C003BCC9B /* CheckboxDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC892EB01B557C8C003BCC9B /* CheckboxDelegate.swift */; };
 		EC892EB41B557DFA003BCC9B /* SegregatedWasteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC892EB31B557DFA003BCC9B /* SegregatedWasteController.swift */; };
+		ECA896271B6415AA004EBE87 /* CalculatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA896261B6415AA004EBE87 /* CalculatorController.swift */; };
+		ECA896281B641726004EBE87 /* calculatorViewController.swift in Resources */ = {isa = PBXBuildFile; fileRef = EC7986F41B6090E300FD147D /* calculatorViewController.swift */; };
+		ECA896291B641739004EBE87 /* RequestEntryViewController.swift in Resources */ = {isa = PBXBuildFile; fileRef = EC3728591B5427CB0051BC2D /* RequestEntryViewController.swift */; };
+		ECA8962A1B641739004EBE87 /* SegregatedWasteController.swift in Resources */ = {isa = PBXBuildFile; fileRef = EC892EB31B557DFA003BCC9B /* SegregatedWasteController.swift */; };
+		ECA8962B1B641739004EBE87 /* LoginViewController.swift in Resources */ = {isa = PBXBuildFile; fileRef = EC7986F01B6022E300FD147D /* LoginViewController.swift */; };
+		ECA8962C1B641739004EBE87 /* StatusViewController.swift in Resources */ = {isa = PBXBuildFile; fileRef = EC7986F21B6058B000FD147D /* StatusViewController.swift */; };
+		ECA8962D1B641739004EBE87 /* CalculatorController.swift in Resources */ = {isa = PBXBuildFile; fileRef = ECA896261B6415AA004EBE87 /* CalculatorController.swift */; };
+		ECA8962E1B641744004EBE87 /* Post.swift in Resources */ = {isa = PBXBuildFile; fileRef = EC7C56FD1B559228003B62AB /* Post.swift */; };
+		ECA8962F1B641744004EBE87 /* UserAlert.swift in Resources */ = {isa = PBXBuildFile; fileRef = EC7986E61B60216900FD147D /* UserAlert.swift */; };
+		ECA896301B641744004EBE87 /* Checkbox.swift in Resources */ = {isa = PBXBuildFile; fileRef = EC892EAE1B557BFB003BCC9B /* Checkbox.swift */; };
+		ECA896311B641744004EBE87 /* CheckboxDelegate.swift in Resources */ = {isa = PBXBuildFile; fileRef = EC892EB01B557C8C003BCC9B /* CheckboxDelegate.swift */; };
+		ECA896321B641744004EBE87 /* PhototakingHelper.swift in Resources */ = {isa = PBXBuildFile; fileRef = EC3728571B5426470051BC2D /* PhototakingHelper.swift */; };
+		ECA896331B641744004EBE87 /* AppDelegate.swift in Resources */ = {isa = PBXBuildFile; fileRef = 624262B21B4460CB00005CE3 /* AppDelegate.swift */; };
+		ECA896341B641744004EBE87 /* ErrorHandling.swift in Resources */ = {isa = PBXBuildFile; fileRef = 624262B81B4460CB00005CE3 /* ErrorHandling.swift */; };
+		ECA896351B641756004EBE87 /* ParseLoginHelper.swift in Resources */ = {isa = PBXBuildFile; fileRef = 624262B91B4460CB00005CE3 /* ParseLoginHelper.swift */; };
+		ECA896361B641756004EBE87 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 624262BB1B4460CB00005CE3 /* Info.plist */; };
+		ECA896371B641756004EBE87 /* TemplateProject-Bridging-Header.h in Resources */ = {isa = PBXBuildFile; fileRef = 624262BC1B4460CB00005CE3 /* TemplateProject-Bridging-Header.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +151,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1B29988C82390AB303CA2604 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		624262B21B4460CB00005CE3 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		624262B41B4460CB00005CE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		624262B61B4460CB00005CE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -161,11 +182,15 @@
 		62C8C1E01B06BD6500DC3EA7 /* TemplateProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TemplateProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC3728571B5426470051BC2D /* PhototakingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhototakingHelper.swift; sourceTree = "<group>"; };
 		EC3728591B5427CB0051BC2D /* RequestEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestEntryViewController.swift; path = ../RequestEntryViewController.swift; sourceTree = "<group>"; };
+		EC7986E61B60216900FD147D /* UserAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAlert.swift; sourceTree = "<group>"; };
+		EC7986F01B6022E300FD147D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		EC7986F21B6058B000FD147D /* StatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
+		EC7986F41B6090E300FD147D /* calculatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = calculatorViewController.swift; path = ViewControllers/calculatorViewController.swift; sourceTree = "<group>"; };
 		EC7C56FD1B559228003B62AB /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		EC7C57391B56CD06003B62AB /* LocationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationHelper.swift; path = ../Models/LocationHelper.swift; sourceTree = "<group>"; };
 		EC892EAE1B557BFB003BCC9B /* Checkbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
 		EC892EB01B557C8C003BCC9B /* CheckboxDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxDelegate.swift; sourceTree = "<group>"; };
 		EC892EB31B557DFA003BCC9B /* SegregatedWasteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegregatedWasteController.swift; sourceTree = "<group>"; };
+		ECA896261B6415AA004EBE87 /* CalculatorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalculatorController.swift; path = ViewControllers/CalculatorController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +225,8 @@
 		624262B11B4460CB00005CE3 /* TemplateProject */ = {
 			isa = PBXGroup;
 			children = (
+				ECA896261B6415AA004EBE87 /* CalculatorController.swift */,
+				EC7986F41B6090E300FD147D /* calculatorViewController.swift */,
 				EC7C56F61B559203003B62AB /* Models */,
 				EC892EB21B557D67003BCC9B /* ViewControllers */,
 				EC892EAD1B557BC0003BCC9B /* CheckBoxes */,
@@ -246,6 +273,7 @@
 				62551B691B06BF6D000913E4 /* ParseFacebookUtils.framework */,
 				62551B6A1B06BF6D000913E4 /* ParseFacebookUtilsV4.framework */,
 				62551B6B1B06BF6D000913E4 /* ParseUI.framework */,
+				1B29988C82390AB303CA2604 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -276,8 +304,8 @@
 			isa = PBXGroup;
 			children = (
 				624262B11B4460CB00005CE3 /* TemplateProject */,
-				62551B621B06BF33000913E4 /* Frameworks */,
 				62C8C1E11B06BD6500DC3EA7 /* Products */,
+				62551B621B06BF33000913E4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -292,7 +320,6 @@
 		EC3728501B54261D0051BC2D /* PhotoHelper */ = {
 			isa = PBXGroup;
 			children = (
-				EC7C57391B56CD06003B62AB /* LocationHelper.swift */,
 				EC3728571B5426470051BC2D /* PhototakingHelper.swift */,
 			);
 			path = PhotoHelper;
@@ -302,6 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				EC7C56FD1B559228003B62AB /* Post.swift */,
+				EC7986E61B60216900FD147D /* UserAlert.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -320,6 +348,8 @@
 			children = (
 				EC3728591B5427CB0051BC2D /* RequestEntryViewController.swift */,
 				EC892EB31B557DFA003BCC9B /* SegregatedWasteController.swift */,
+				EC7986F01B6022E300FD147D /* LoginViewController.swift */,
+				EC7986F21B6058B000FD147D /* StatusViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -453,6 +483,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECA896351B641756004EBE87 /* ParseLoginHelper.swift in Resources */,
+				ECA896361B641756004EBE87 /* Info.plist in Resources */,
+				ECA896371B641756004EBE87 /* TemplateProject-Bridging-Header.h in Resources */,
+				ECA8962E1B641744004EBE87 /* Post.swift in Resources */,
+				ECA8962F1B641744004EBE87 /* UserAlert.swift in Resources */,
+				ECA896301B641744004EBE87 /* Checkbox.swift in Resources */,
+				ECA896311B641744004EBE87 /* CheckboxDelegate.swift in Resources */,
+				ECA896321B641744004EBE87 /* PhototakingHelper.swift in Resources */,
+				ECA896331B641744004EBE87 /* AppDelegate.swift in Resources */,
+				ECA896341B641744004EBE87 /* ErrorHandling.swift in Resources */,
+				ECA896291B641739004EBE87 /* RequestEntryViewController.swift in Resources */,
+				ECA8962A1B641739004EBE87 /* SegregatedWasteController.swift in Resources */,
+				ECA8962B1B641739004EBE87 /* LoginViewController.swift in Resources */,
+				ECA8962C1B641739004EBE87 /* StatusViewController.swift in Resources */,
+				ECA8962D1B641739004EBE87 /* CalculatorController.swift in Resources */,
+				ECA896281B641726004EBE87 /* calculatorViewController.swift in Resources */,
 				624262C51B4460CB00005CE3 /* Images.xcassets in Resources */,
 				624262C11B4460CB00005CE3 /* LaunchScreen.xib in Resources */,
 				624262C21B4460CB00005CE3 /* Main.storyboard in Resources */,
@@ -470,12 +516,16 @@
 				EC37285A1B5427CB0051BC2D /* RequestEntryViewController.swift in Sources */,
 				EC892EB11B557C8C003BCC9B /* CheckboxDelegate.swift in Sources */,
 				624262C41B4460CB00005CE3 /* ParseLoginHelper.swift in Sources */,
-				EC7C573A1B56CD06003B62AB /* LocationHelper.swift in Sources */,
+				EC7986F31B6058B000FD147D /* StatusViewController.swift in Sources */,
 				EC892EAF1B557BFB003BCC9B /* Checkbox.swift in Sources */,
 				EC892EB41B557DFA003BCC9B /* SegregatedWasteController.swift in Sources */,
 				EC7C56FE1B559228003B62AB /* Post.swift in Sources */,
 				EC3728581B5426470051BC2D /* PhototakingHelper.swift in Sources */,
+				ECA896271B6415AA004EBE87 /* CalculatorController.swift in Sources */,
 				624262C31B4460CB00005CE3 /* ErrorHandling.swift in Sources */,
+				EC7986F51B6090E300FD147D /* calculatorViewController.swift in Sources */,
+				EC7986E71B60216900FD147D /* UserAlert.swift in Sources */,
+				EC7986F11B6022E300FD147D /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

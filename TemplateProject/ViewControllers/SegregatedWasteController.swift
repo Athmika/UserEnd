@@ -9,20 +9,20 @@
 
 import UIKit
 
-class SegregatedWasteController: UIViewController, CheckboxDelegate {
+class SegregatedWasteController: UIViewController, CheckboxDelegate
+{
     
-    let mCheckboxTitles = ["Paper", "Cartons", "Plastic", "Plastic films","Multilayer Laminates", "Cocunt shells", "Glass Bottle"];
+    let mCheckboxTitles = ["Paper", "Cartons", "Plastic", "Plastic films","Multilayer Laminates", "Coconut shells", "Glass Bottle"]
     var checkboxState = [String:Bool]()
-    var selectedCheckboxes = [String]()
-    var isSegregated = false
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-        self.createCheckboxes();
-        isSegregated = false
+        self.createCheckboxes()
     }
     
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
     }
     
@@ -43,20 +43,52 @@ class SegregatedWasteController: UIViewController, CheckboxDelegate {
             lFrame.origin.y += lFrame.size.height;
         }
     }
-   //Saves the state in a dictionary
-    func didSelectCheckbox(state: Bool, identifier: Int, title: String) {
-        checkboxState[title] = state
-    }
-
     
-  @IBAction func NextButton(sender: UIButton)
+   
+   //Saves the state in a dictionary
+    func didSelectCheckbox(state: Bool, identifier: Int, title: String)
     {
-       isSegregated = true
-        
-        /* for (title, state) in checkboxState {
-            println("The state of \(title) is \(state)")} */
+         checkboxState[title] = state
         
     }
+    
+    @IBAction func nextButton(sender: UIButton)
+    {
+    //prepareForSegu(segue: , sender: sender)
+    
+    }
+    
+    
+ override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+        {
+            var count = 0
+            for (item,state) in checkboxState
+            {
+                if state == true
+                {
+                    count = 1
+                }
+            }
+            
+            if (count == 1)
+            {
+                var dictionary1: RequestEntryViewController = segue.destinationViewController as! RequestEntryViewController
+                
+                dictionary1.dictionary = checkboxState
+            }
+                
+            else
+            {
+                var alert = UIAlertController(title: "Alert", message: "Check at least one box", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+
+        
+    }
+    
+}
+
+
 
    
-}

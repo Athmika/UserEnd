@@ -12,37 +12,42 @@ import Parse
 import MapKit
 import CoreLocation
 
-class RequestEntryViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate
+class RequestEntryViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate
 {
     var photoTakingHelper: PhotoTakingHelper?
-    let manager = CLLocationManager()
+    var manager:CLLocationManager!
+    let userAlert = UserAlert()
     var fimage:UIImage?
     var faddress: String?
+    var ward: String?
+    var dictionary = [String:Bool]()
+    var segregatedArray: [String] = []
     
-    @IBOutlet weak var phoneTextField: UITextField!
+    
+   
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var addressTextField: UITextField!
+    @IBOutlet weak var addressTextField:UITextField!
+    
     @IBOutlet weak var ImagePreview: UIImageView!
     @IBOutlet weak var Button: UIButton!
     
-    @IBOutlet weak var map: MKMapView!
+  
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         Button.setTitle("Add image", forState: UIControlState.Normal)
-        manager.delegate = self
-        manager.desiredAccuracy - kCLLocationAccuracyBest
-        manager.startUpdatingLocation()
-
         
     }
     
     
     @IBAction func GetAddress(sender: UIButton) {
+        manager = CLLocationManager()
+        manager.delegate = self
+        manager.desiredAccuracy - kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
-        addressTextField.text  = faddress
-        println(faddess)
-       
+        manager.startUpdatingLocation()
+               
     }
     
     func takePhoto(sender:UIButton) {
@@ -59,7 +64,7 @@ class RequestEntryViewController: UIViewController, UITextFieldDelegate, CLLocat
     @IBAction func Upload(sender: UIButton)
     {
       var name = nameTextField.text
-      var phone = phoneTextField.text
+      //var phone = phoneTextField.text
       var address = addressTextField.text
         if ImagePreview.image == nil || name == nil
       {
@@ -69,13 +74,34 @@ class RequestEntryViewController: UIViewController, UITextFieldDelegate, CLLocat
       }
          else
       {
-        
         let post = Post()
-        post.name = name
-        post.phone = phone
-        post.address = address
+        var n: Int! = self.navigationController?.viewControllers?.count
+        if self.navigationController?.viewControllers[n-2].title == "Segregated_waste"
+        {
+         post.isSegregated = true
+          for (item, state)in dictionary
+          {segregatedArray.append(item)}
+        }
+        else {post.isSegregated = false}
+        post.isCompleted = false
         post.image = fimage
+        post.isFeasible = false
+        post.textSent = false
+        post.array = segregatedArray
+        post.name = name
+        post.ward = ward
+        post.phone = phone
+        
+        post.address = address
         post.uploadPhoto()
+        
+        userAlert.phone = phone
+        userAlert.isFeasible = false
+        userAlert.isCompleted = false
+        userAlert.userConfirmed = false
+        userAlert.textSent = false
+        userAlert.saveInBackground()
+        
     }
      
     }
@@ -95,45 +121,42 @@ class RequestEntryViewController: UIViewController, UITextFieldDelegate, CLLocat
      func textFieldShouldReturn(textField: UITextField) -> Bool
      {
             nameTextField.resignFirstResponder()
-            phoneTextField.resignFirstResponder()
+            
+            addressTextField.resignFirstResponder()
             return true
         }
 
        /* func textFieldDidBeginEditing(textField: UITextField) {
             ScrollView.setContentOffset(CGPointMake(0, 3), animated: true)
         }*/
+
+    var wards = ["1","2","3","4","5","6"]
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return wards.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+       
+         ward = wards[row]
+        return ward
+    }
     
     
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        
-        var userLocation:CLLocation = locations[0] as! CLLocation
-        
-        CLGeocoder().reverseGeocodeLocation(userLocation, completionHandler: { (placemarks, error) -> Void in
-            
-            if (error != nil) {
-                
-                println("problem yo")
-                
-            } else {
-                
-                if let p = CLPlacemark(placemark: placemarks?[0] as! CLPlacemark) {
-                    
-                    var subThoroughfare:String = ""
-                    
-                    if (p.subThoroughfare != nil) {
-                        
-                        subThoroughfare = p.subThoroughfare
-                        
-                    }
-                    self.faddress = "\(subThoroughfare) \(p.thoroughfare) \n \(p.subLocality) \n \(p.subAdministrativeArea) \n \(p.postalCode) \n \(p.country)"
-                    
-                }
-                
-            }
-            
-        })
+    @IBAction func Unwind(sender: UIButton)
+    {
+     performSegueWithIdentifier("goToLoginController", sender: self)
     }
-    }
+    
+}
+
+
+
+
+
 
 
 //To use GPS
@@ -149,182 +172,68 @@ override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 }
 */
 
-extension RequestEntryViewController: CLLocationManagerDelegate
-    
-{
-    
-    
-    
-    func displayLocationInfo(placemark: CLPlacemark?) {
-        
-        if let containsPlacemark = placemark {
-            
-            //stop updating location to save battery life
-            
-            locationManager.stopUpdatingLocation()
-            
-            let locality = (containsPlacemark.locality != nil) ? containsPlacemark.locality : ""
-            
-            let postalCode = (containsPlacemark.postalCode != nil) ? containsPlacemark.postalCode : ""
-            
-            let administrativeArea = (containsPlacemark.administrativeArea != nil) ? containsPlacemark.administrativeArea : ""
-            
-            
-            
-            var latitude = containsPlacemark.location.coordinate.latitude
-            
-            var longitude = containsPlacemark.location.coordinate.longitude
-            
-            
-            
-            displayOnMap(latitude,Longitude: longitude)
-            
-        }
-        
-    }
-    
-    
-    
-    
-    
-func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        
-        CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: {(placemarks, error)->Void in
-            
-            
-            
-            if (error != nil) {
-                
-                println("Reverse geocoder failed with error" + error.localizedDescription)
-                
-                return
-                
-            }
-            
-            
-            
-            if placemarks.count > 0 {
-                
-                let pm = placemarks[0] as! CLPlacemark
-                
-                self.displayLocationInfo(pm)
-                
-            } else {
-                
-                println("Problem with the data received from geocoder")
-                
-            }
-            
-        })
-        
-    }
-    
-    
+
+
     extension RequestEntryViewController: CLLocationManagerDelegate
         
     {
         
-        
-        
-        func displayLocationInfo(placemark: CLPlacemark?) {
+        func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!)
+        {
             
-            if let containsPlacemark = placemark {
-                
-                //stop updating location to save battery life
-                
-                locationManager.stopUpdatingLocation()
-                
-                let locality = (containsPlacemark.locality != nil) ? containsPlacemark.locality : ""
-                
-                let postalCode = (containsPlacemark.postalCode != nil) ? containsPlacemark.postalCode : ""
-                
-                let administrativeArea = (containsPlacemark.administrativeArea != nil) ? containsPlacemark.administrativeArea : ""
-                
-                
-                
-                var latitude = containsPlacemark.location.coordinate.latitude
-                
-                var longitude = containsPlacemark.location.coordinate.longitude
-                
-                
-                
-                displayOnMap(latitude,Longitude: longitude)
-                
-            }
+            var addressText = ""
+            //println(locations)
             
-        }
-        
-        
-        
-        
-        
-        func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+            var userLocation:CLLocation = locations[0] as! CLLocation
+           
             
-            CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: {(placemarks, error)->Void in
+            CLGeocoder().reverseGeocodeLocation(userLocation, completionHandler: { (placemarks, error) -> Void in
                 
-                
-                
-                if (error != nil) {
-                    
-                    println("Reverse geocoder failed with error" + error.localizedDescription)
-                    
-                    return
+                if (error != nil)
+                {
+                    println("There has been a problem")
+                    println(error)
                     
                 }
-                
-                
-                
-                if placemarks.count > 0 {
+                else {
                     
-                    let pm = placemarks[0] as! CLPlacemark
-                    
-                    self.displayLocationInfo(pm)
-                    
-                } else {
-                    
-                    println("Problem with the data received from geocoder")
-                    
+                    if let p = CLPlacemark(placemark: placemarks?[0] as! CLPlacemark)
+                    {
+                        
+                        if (p.subThoroughfare != nil)
+                        {
+                            addressText += p.subThoroughfare + " "
+                        }
+                        
+                        if (p.thoroughfare != nil)
+                        {
+                           addressText += p.thoroughfare + " "
+                        }
+                        
+                        if (p.subLocality != nil)
+                        {
+                            addressText += p.subLocality + " "
+                        }
+                        
+                        if (p.subAdministrativeArea != nil)
+                        {
+                            addressText += p.subAdministrativeArea + " "
+                        }
+                        
+                        if (p.postalCode != nil)
+                        {
+                           addressText += p.postalCode + " "
+                        }
+                        
+                        
+                       self.addressTextField.text = addressText
+                        
+                      manager.stopUpdatingLocation()
+
+                    }
                 }
                 
             })
             
-        }
-        
-        
-        
-        func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
-            
-            println("Error while updating location " + error.localizedDescription)
-            
-        }
-        
-        
-        
-        func displayOnMap(Latitude:CLLocationDegrees, Longitude: CLLocationDegrees)
-            
-        {
-            
-            let Location = CLLocation(latitude: Latitude, longitude: Longitude)
-            
-            let regionRadius: CLLocationDistance = 1000
-            
-            centerMapOnLocation(Location,regionRadius: regionRadius)
-            
-        }
-        
-        
-        
-        func centerMapOnLocation(location: CLLocation, regionRadius: CLLocationDistance)
-            
-        {
-            
-            let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,regionRadius * 2.0, regionRadius * 2.0)
-            
-            map.setRegion(coordinateRegion, animated: true)
-            
-        }
-        
-        
-        
-}
+        }}
 

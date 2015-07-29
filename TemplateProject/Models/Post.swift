@@ -8,7 +8,7 @@
 
 import Foundation
 import Parse
-
+import Bond
 // To create a custom Parse class you need to inherit from PFObject and implement the PFSubclassing protocol
 
 class Post : PFObject, PFSubclassing {
@@ -19,6 +19,13 @@ class Post : PFObject, PFSubclassing {
     @NSManaged var name: String?
     @NSManaged var phone: String?
     @NSManaged var address: String?
+    @NSManaged var ward: String?
+    @NSManaged var collectedDate: String?
+    @NSManaged var isSegregated: Bool
+    @NSManaged var isFeasible: Bool
+    @NSManaged var textSent: Bool
+    @NSManaged var isCompleted: Bool
+    @NSManaged var array: [String]
     
     var photoUploadTask: UIBackgroundTaskIdentifier?
 
