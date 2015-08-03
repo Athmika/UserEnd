@@ -29,6 +29,7 @@ class StatusViewController: UIViewController {
     {
     
         label.text = "Your request has been recieved. You'll be notified on further updates"
+        confirmButton.setTitle("Ok", forState: .Normal)
     }
     
     else
@@ -48,7 +49,7 @@ class StatusViewController: UIViewController {
             
         else if(isFeasible == true)
         {
-            label.text = "Your request is feasible"
+            label.text = "Your request is feasible. The delivery date is \(alertPost.collectionDate)"
         confirmButton.setTitle("Ok", forState: .Normal)
         }
         
@@ -68,7 +69,7 @@ class StatusViewController: UIViewController {
        {
         deleteUserAlert()
         }
-        else if (!isFeasible)
+        else if (!isFeasible && textSent == true)
         {
          deleteUserAlert()
         }

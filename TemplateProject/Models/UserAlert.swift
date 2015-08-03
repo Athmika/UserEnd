@@ -17,9 +17,11 @@ class UserAlert : PFObject, PFSubclassing
     @NSManaged var textSent: Bool
     @NSManaged var deleted: Bool
     @NSManaged var userConfirmed: Bool
+    @NSManaged var collectionDate: NSDate
 
     
-    static func parseClassName() -> String {
+    static func parseClassName() -> String
+    {
         return "UserAlert"
     }
     

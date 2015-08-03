@@ -7,21 +7,31 @@
 //
 
 import UIKit
+import Parse
+
+import Foundation
+import SystemConfiguration
+
+import ReachabilitySwift
+
+
 var phone: String = ""
 
 class LoginViewController: UIViewController {
-
+ 
     
     @IBOutlet weak var phoneNumberField: UITextField!
     let userAlertQuery = UserAlert.query()
-    //let postLocal = PostLocal()
+    
+    @IBOutlet weak var nextButton: UIButton!
     var userPosts: [UserAlert] = []
     var newUser: Bool = false
-    
+    var query: PFQuery?
+    let reachability = Reachability.reachabilityForInternetConnection()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        nextButton.enabled = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,8 +52,10 @@ class LoginViewController: UIViewController {
         }
     }
     
+
     @IBAction func proceedButton(sender: UIButton) {
         newUser = false
+        
         if (phoneNumberField.text == "")
         {
             var alert = UIAlertController(title: "Alert", message: "The password is incorrect", preferredStyle: UIAlertControllerStyle.Alert)
@@ -52,26 +64,13 @@ class LoginViewController: UIViewController {
         }
         else
         {
-            userAlertQuery!.whereKey("phone", equalTo: phoneNumberField.text)
-            //println(phoneNumberField.text)
-            phone = phoneNumberField.text
-            userAlertQuery!.findObjectsInBackgroundWithBlock {(result: [AnyObject]?, error: NSError?) -> Void in
-                self.userPosts = result as? [UserAlert] ?? []
-                
-                if self.userPosts.count != 0
-                {
-                   //println("hi")
-                }
-                else
-                {
-                    self.newUser = true
-                
-                }
-                
-                println(self.userPosts)
-               self.next()
-            }
+            query = userAlertQuery!.whereKey("phone", equalTo: phoneNumberField.text)
          
+            phone = phoneNumberField.text
+            
+            self.query(query!)
+            
+        
         }
         
     
@@ -105,5 +104,33 @@ good.isCompleted = userPosts[0].isCompleted
     }
     
     @IBAction func unwindToLoginViewController2(segue: UIStoryboardSegue) {
+    }
+    
+
+    
+    func query(query: PFQuery)
+    {
+        self.nextButton.enabled = false
+        query.findObjectsInBackgroundWithBlock {(result: [AnyObject]?, error: NSError?) -> Void in
+            if let error = error
+            {
+            ErrorHandling.defaultErrorHandler(error)
+            }
+            self.userPosts = result as? [UserAlert] ?? []
+            if self.userPosts.count == 0
+            {
+             self.newUser = true
+            }
+            println(self.userPosts)
+            self.nextButton.enabled = true
+            self.next()
+        }
+    }
+    
+    func alert(alertMsg: String)
+    {
+        var alert = UIAlertController(title: "Alert", message: alertMsg, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 }

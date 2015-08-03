@@ -12,7 +12,7 @@ import Parse
 import MapKit
 import CoreLocation
 
-class RequestEntryViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate
+class RequestEntryViewController: UIViewController, UITextFieldDelegate,  UIPickerViewDelegate
 {
     var photoTakingHelper: PhotoTakingHelper?
     var manager:CLLocationManager!
@@ -31,12 +31,11 @@ class RequestEntryViewController: UIViewController, UITextFieldDelegate, UIPicke
     @IBOutlet weak var ImagePreview: UIImageView!
     @IBOutlet weak var Button: UIButton!
     
-  
+    @IBOutlet weak var sendButtonForState: UIButton!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        Button.setTitle("Add image", forState: UIControlState.Normal)
         
     }
     
@@ -63,10 +62,11 @@ class RequestEntryViewController: UIViewController, UITextFieldDelegate, UIPicke
         
     @IBAction func Upload(sender: UIButton)
     {
+    self.sendButtonForState.enabled = false
       var name = nameTextField.text
       //var phone = phoneTextField.text
       var address = addressTextField.text
-        if ImagePreview.image == nil || name == nil
+ if ImagePreview.image == nil || name == nil
       {
         var alert = UIAlertController(title: "Alert", message: "All fields are required. Please add the missing information.", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
@@ -100,9 +100,18 @@ class RequestEntryViewController: UIViewController, UITextFieldDelegate, UIPicke
         userAlert.isCompleted = false
         userAlert.userConfirmed = false
         userAlert.textSent = false
-        userAlert.saveInBackground()
-        
-    }
+        userAlert.saveInBackgroundWithBlock {
+                (success, error) in
+            
+            if success == true {
+        self.performSegueWithIdentifier("goToLoginController", sender: self)
+            }
+            else {
+            ErrorHandling.defaultErrorHandler(error!)
+            }
+            
+        }
+        }
      
     }
     
@@ -116,8 +125,14 @@ class RequestEntryViewController: UIViewController, UITextFieldDelegate, UIPicke
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
+    @IBAction func wardSegment(sender: UISegmentedControl) {
+       ward = "\(segmentedControl.selectedSegmentIndex + 1)"
+       
+    }
     //To make the field disapper
+    @IBOutlet weak var wardSegment: UISegmentedControl!
      func textFieldShouldReturn(textField: UITextField) -> Bool
      {
             nameTextField.resignFirstResponder()
@@ -130,7 +145,7 @@ class RequestEntryViewController: UIViewController, UITextFieldDelegate, UIPicke
             ScrollView.setContentOffset(CGPointMake(0, 3), animated: true)
         }*/
 
-    var wards = ["1","2","3","4","5","6"]
+   /* var wards = ["1","2","3","4","5","6"]
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -145,11 +160,8 @@ class RequestEntryViewController: UIViewController, UITextFieldDelegate, UIPicke
         return ward
     }
     
+    */
     
-    @IBAction func Unwind(sender: UIButton)
-    {
-     performSegueWithIdentifier("goToLoginController", sender: self)
-    }
     
 }
 
