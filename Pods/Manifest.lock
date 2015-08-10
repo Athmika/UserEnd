@@ -1,19 +1,12 @@
 PODS:
-  - ReachabilitySwift (1.1)
+  - Mixpanel (2.8.2):
+    - Mixpanel/Mixpanel (= 2.8.2)
+  - Mixpanel/Mixpanel (2.8.2)
 
 DEPENDENCIES:
-  - ReachabilitySwift (from `https://github.com/ashleymills/Reachability.swift`)
-
-EXTERNAL SOURCES:
-  ReachabilitySwift:
-    :git: https://github.com/ashleymills/Reachability.swift
-
-CHECKOUT OPTIONS:
-  ReachabilitySwift:
-    :commit: 7e0180c2761db33bc88eef310ef6d7a79c7ea40e
-    :git: https://github.com/ashleymills/Reachability.swift
+  - Mixpanel
 
 SPEC CHECKSUMS:
-  ReachabilitySwift: 1e53abddb01111deac0d229dabdb8bb043567b18
+  Mixpanel: f4d71ac2a306e7cda6ad03d4a2be249a0fd7a967
 
 COCOAPODS: 0.38.2

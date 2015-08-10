@@ -4,12 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods.xcscheme</key>
+		<key>Mixpanel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>ReachabilitySwift.xcscheme</key>
+		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -17,12 +17,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0C66C30381F86C3D642FC983CCADEBB6</key>
+		<key>25E5EDA282319FE96A45E9B98CE9EF52</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>59CFCDC89601DC8AF248976EF6680698</key>
+		<key>E59C84DEE32D4BC7B58266F1C4016EBA</key>
 		<dict>
 			<key>primary</key>
 			<true/>

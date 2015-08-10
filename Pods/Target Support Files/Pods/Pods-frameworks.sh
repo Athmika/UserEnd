@@ -52,8 +52,8 @@ code_sign_if_enabled() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework 'Pods/ReachabilitySwift.framework'
+  install_framework 'Pods/Mixpanel.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework 'Pods/ReachabilitySwift.framework'
+  install_framework 'Pods/Mixpanel.framework'
 fi
